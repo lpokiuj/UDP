@@ -33,6 +33,10 @@ p{
     display: flex;
 }
 
+.responsive{
+    display: none;
+}
+
 body{
     background-color: var(--clr-primary);
 }
@@ -104,7 +108,6 @@ nav .burger-icon span{
 main{
     background-image: url(../images/background-img.svg);
     background-size: contain;
-    height: 50rem;
     background-repeat: no-repeat;
     position: absolute;
 }
@@ -114,7 +117,7 @@ main{
     flex-direction: column;
     margin: 0 2rem;
     text-align: center;
-    margin-top: 13rem;
+    margin-top: 10rem;
     justify-content: center;
     align-content: center;
     padding: 2rem 2rem;
@@ -143,4 +146,44 @@ main{
 .btn:active{
     background-color: var(--clr-primary);
     color: var(--clr-secondary-transparent)
+}
+
+@media screen and (min-width: 1024px){
+
+    .space-left{
+        margin-left: 2.5rem;
+    }
+
+    nav{
+        justify-content: flex-start;
+    }
+
+    .burger-icon{
+        display: none;
+    }
+
+    .responsive{
+        display: flex;
+    }
+
+    main{
+        background-size: cover;
+    }
+
+    main .content{
+        margin: 0 10rem;
+        margin-top: 30rem;
+    }
+
+    main .content .btn, main .content .btn:hover{
+        transition: 0.3s;
+    }
+
+    main .content .btn:hover{
+        cursor: pointer;
+        background-color: var(--clr-primary);
+        color: var(--clr-secondary);
+    }
+
+
 }
