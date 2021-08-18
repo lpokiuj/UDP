@@ -1,0 +1,118 @@
+:root{
+
+    --clr-primary: rgba(53, 53, 53, 1);
+    --clr-secondary: rgba(255, 210, 52, 1);
+    --clr-secondary-transparent: rgba(239, 206, 87, 0.93);
+    --clr-secondary-darker: rgba(204, 159, 0, 1);
+
+    --ff-primary: 'Poppins', sans-serif;
+
+}
+
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+    font-family: var(--ff-primary);
+}
+
+body,
+h1,
+h2,
+h3,
+p{
+    padding: 0;
+    margin: 0;
+}
+
+.flex{
+    display: flex;
+}
+
+body{
+    background-color: var(--clr-primary);
+}
+
+/* navbar */
+
+nav{
+    background-color: var(--clr-secondary);
+    height: 6rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+nav img{
+    width: 4rem;
+}
+
+nav .burger-icon{
+    height: 100%;
+    padding: 2rem 0;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+nav .burger-icon span{
+    width: 2rem;
+    border: 2px solid var(--clr-secondary-darker);
+}
+
+/* Sidebar */
+
+.sidebar{
+    z-index: 10;
+    color: white;
+    position: absolute;
+    height: 100%;
+    width: 80%;
+    right: 0;
+    background-color: var(--clr-primary);
+}
+
+/* Middle box */
+
+main{
+    background-image: url(../images/background-img.svg);
+    background-size: contain;
+    height: 50rem;
+    background-repeat: no-repeat;
+    position: absolute;
+}
+
+.content{
+    background-color: var(--clr-secondary-transparent);
+    flex-direction: column;
+    margin: 0 2rem;
+    text-align: center;
+    margin-top: 13rem;
+    justify-content: center;
+    align-content: center;
+    padding: 2rem 2rem;
+}
+
+.content h1{
+    font-weight: bolder;
+    font-size: 22px;
+    margin-bottom: 1.5rem;
+}
+
+.content p{
+    font-size: 18px;
+    margin-bottom: 1.5rem;
+}
+
+.btn{
+    padding: 1rem 4rem;
+    border: 2px solid black;
+    border-radius: 5rem;
+    background-color: var(--clr-secondary-transparent);
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.btn:active{
+    background-color: var(--clr-primary);
+    color: var(--clr-secondary-transparent)
+}
