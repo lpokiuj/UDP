@@ -1,0 +1,100 @@
+:root{
+
+    --clr-primary: rgba(53, 53, 53, 1);
+    --clr-secondary: rgba(255, 210, 52, 1);
+    --clr-secondary-transparent: rgba(239, 206, 87, 0.93);
+    --clr-secondary-darker: rgba(204, 159, 0, 1);
+
+    --ff-primary: 'Poppins', sans-serif;
+
+}
+
+*,
+*::after,
+*::before{
+    box-sizing: border-box;
+    font-family: var(--ff-primary);
+}
+
+body,
+h1,
+h2,
+h3,
+p{
+    padding: 0;
+    margin: 0;
+}
+
+.space-bot{
+    margin-bottom: 2rem;
+}
+
+.flex{
+    display: flex;
+}
+
+body{
+    background-color: var(--clr-primary);
+}
+
+/* navbar */
+
+nav{
+    background-color: var(--clr-secondary);
+    height: 6rem;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+}
+
+nav img{
+    width: 4rem;
+}
+
+nav .burger-icon{
+    height: 100%;
+    padding: 2rem 0;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+nav .burger-icon span{
+    width: 2rem;
+    border: 2px solid var(--clr-secondary-darker);
+}
+
+/* Sidebar */
+
+.sidebar{
+    z-index: 3;
+    color: rgb(172, 163, 163);
+    position: absolute;
+    height: 100%;
+    width: 80%;
+    right: 0;
+    background-color: var(--clr-primary);
+    padding-left: 2rem;
+    font-size: 20px;
+    display: none;
+    transition: 2s;
+}
+
+.sidebar .close-burger span{
+    position: absolute;
+    right: 1.5rem;
+    top: 2.5rem;
+    border: 2px solid var(--clr-secondary);
+    width: 3rem;
+}
+
+.sidebar .close-burger .first-line{
+    transform: rotate(45deg);
+}
+
+.sidebar .close-burger .second-line{
+    transform: rotate(-45deg);
+}
+
+.sidebar .home{
+    margin-top: 6rem;
+}

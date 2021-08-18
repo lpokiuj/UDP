@@ -25,6 +25,10 @@ p{
     margin: 0;
 }
 
+.space-bot{
+    margin-bottom: 2rem;
+}
+
 .flex{
     display: flex;
 }
@@ -62,13 +66,37 @@ nav .burger-icon span{
 /* Sidebar */
 
 .sidebar{
-    z-index: 10;
-    color: white;
+    z-index: 3;
+    color: rgb(172, 163, 163);
     position: absolute;
     height: 100%;
     width: 80%;
     right: 0;
     background-color: var(--clr-primary);
+    padding-left: 2rem;
+    font-size: 20px;
+    display: none;
+    transition: 2s;
+}
+
+.sidebar .close-burger span{
+    position: absolute;
+    right: 1.5rem;
+    top: 2.5rem;
+    border: 2px solid var(--clr-secondary);
+    width: 3rem;
+}
+
+.sidebar .close-burger .first-line{
+    transform: rotate(45deg);
+}
+
+.sidebar .close-burger .second-line{
+    transform: rotate(-45deg);
+}
+
+.sidebar .home{
+    margin-top: 6rem;
 }
 
 /* Middle box */
