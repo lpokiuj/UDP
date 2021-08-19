@@ -1,52 +1,41 @@
 let dropdownButtonCategories = document.querySelector('.categories-bar');
 let dropdownButtonGacha = document.querySelector('.gacha-set-bar');
 
+let flag = 0;
 dropdownButtonCategories.addEventListener("click", function(){
 
-    if(dropdownButtonCategories.classList.contains('active') && flagCategories == 1){
+    if(dropdownButtonCategories.classList.contains('active')){
         dropdownButtonCategories.classList.remove('active');
     }
-    else if(flagCategories == 0){
+    else{
         dropdownButtonCategories.classList.add('active');
         dropdownButtonGacha.classList.remove('active');
+        flag = 1;
     }
 
 });
 
 dropdownButtonGacha.addEventListener("click", function(){
 
-    if(dropdownButtonGacha.classList.contains('active') && flagGacha == 1){
+    if(dropdownButtonGacha.classList.contains('active')){
         dropdownButtonGacha.classList.remove('active');
     }
-    else if(flagGacha == 0){
+    else{
         dropdownButtonGacha.classList.add('active');
         dropdownButtonCategories.classList.remove('active');
+        flag = 1;
     }
 
 });
 
 document.querySelector('body').addEventListener("click", function(e){
 
-    console.log(e.target);
-
-    if(dropdownButtonCategories.classList.contains('active')){
-        if(e.target != dropdownButtonGacha){
-            dropdownButtonCategories.classList.remove('active');
-            flagCategories = 0;
-        }
-        else{
-            // if gacha do whatever
-        }
+    if(dropdownButtonCategories != e.target && dropdownButtonCategories.classList.contains('active') && flag == 0){
+        dropdownButtonCategories.classList.remove('active');
     }
-    else if(dropdownButtonGacha.classList.contains('active')){
-        if(e.target != dropdownButtonCategories){
-            dropdownButtonGacha.classList.remove('active');
-        }
-        else{
-            // if categories do whatever
-        }
+    if(dropdownButtonGacha != e.target && dropdownButtonGacha.classList.contains('active') && flag == 0){
+        dropdownButtonGacha.classList.remove('active');
     }
-    else{
-    }
+    flag = 0;
 
 });
