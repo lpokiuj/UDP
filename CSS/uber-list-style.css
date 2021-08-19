@@ -71,12 +71,11 @@ nav .burger-icon span{
     position: absolute;
     height: 100%;
     width: 80%;
-    right: 0;
+    right: -100%;
     background-color: var(--clr-primary);
     padding-left: 2rem;
     font-size: 20px;
-    display: none;
-    transition: 2s;
+    transition: right 1s;
 }
 
 .sidebar .close-burger span{
@@ -98,3 +97,6 @@ nav .burger-icon span{
 .sidebar .home{
     margin-top: 6rem;
 }
+
+/* main */
+
