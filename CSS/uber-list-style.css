@@ -68,7 +68,7 @@ nav .burger-icon span{
 .sidebar{
     z-index: 3;
     color: rgb(172, 163, 163);
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 80%;
     right: -100%;
@@ -98,5 +98,103 @@ nav .burger-icon span{
     margin-top: 6rem;
 }
 
-/* main */
+/* Dropdown Sidebar */
 
+.drop-down-content{
+    overflow: scroll;
+    height: 200px;
+    padding-left: 1.5rem;
+    padding-right: 3.5rem;
+}
+
+.drop-down-content p{
+    padding: 0.4rem 0;
+}
+
+.drop-down-content hr{
+    width: 100%;
+}
+
+/* Main */
+
+main{
+    padding: 3rem 3.5rem;
+}
+
+main > h1{
+    color: white;
+    font-size: 20px;
+    margin: 3rem 0;
+    text-align: center;
+}
+
+.search-bar{
+    width: 100%;
+}
+
+.search-bar-bar{
+    padding: 0.8rem 1rem;
+    width: 100%;
+    border-radius: 10rem;
+    background-color: rgba(255, 255, 255, 0.85);
+}
+
+/* Dropdown main */
+
+.drop-down-button{
+    padding: 0.5rem 1rem;
+    background-color: var(--clr-secondary);
+    margin-top: 1rem;
+    border-radius: 10rem;
+}
+
+.drop-down-button.active{
+    border-radius: 1rem 1rem 0 0;
+}
+
+.drop-down-main{
+    background-color: var(--clr-secondary);
+    border-radius: 0 0 1rem 1rem;
+    visibility: hidden;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.drop-down-button.active + .drop-down-main{
+    visibility: visible;
+    opacity: 1;
+    max-height: 10rem;
+    overflow: scroll;
+}
+
+.drop-down-main-content p{
+    padding: 0.5rem;
+    margin-left: 2rem;
+}
+
+.drop-down-main-content hr{
+    background-color: var(--clr-primary);
+}
+
+/* List img */
+
+.list-img{
+    margin-top: 2rem;
+    display: flex;
+    /* grid-template-columns: auto auto;
+    grid-template-rows: auto; */
+    flex-wrap: wrap;
+    gap: 2rem;
+
+}
+
+.char-img img{
+    display: block;
+    max-width: 100%;
+    margin-bottom: 1rem;
+}
+
+.char-img p{
+    color: white;
+}
