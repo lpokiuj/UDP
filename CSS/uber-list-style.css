@@ -171,6 +171,11 @@ main > h1{
     border-radius: 1rem 1rem 0 0;
 }
 
+.drop-down-button:hover{
+    cursor: pointer;
+    background-color: rgba(186, 149, 18, 1);
+}
+
 .drop-down-main{
     background-color: var(--clr-secondary);
     border-radius: 0 0 1rem 1rem;
@@ -185,6 +190,11 @@ main > h1{
     opacity: 1;
     max-height: 10rem;
     overflow: scroll;
+}
+
+.drop-down-main-content p:hover{
+    cursor: pointer;
+    background-color: rgba(186, 149, 18, 1);
 }
 
 .drop-down-main-content p{
