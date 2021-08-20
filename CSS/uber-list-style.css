@@ -115,6 +115,20 @@ nav .burger-icon span{
     width: 100%;
 }
 
+.drop-down-sidebar{
+    visibility: hidden;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.drop-down-button-sidebar.active + .drop-down-sidebar{
+    visibility: visible;
+    opacity: 1;
+    max-height: 10rem;
+    overflow: scroll;
+}
+
 /* Main */
 
 main{
@@ -182,8 +196,6 @@ main > h1{
 .list-img{
     margin-top: 2rem;
     display: flex;
-    /* grid-template-columns: auto auto;
-    grid-template-rows: auto; */
     flex-wrap: wrap;
     gap: 2rem;
 

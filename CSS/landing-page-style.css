@@ -119,6 +119,20 @@ nav .burger-icon span{
     width: 100%;
 }
 
+.drop-down-sidebar{
+    visibility: hidden;
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+}
+
+.drop-down-button-sidebar.active + .drop-down-sidebar{
+    visibility: visible;
+    opacity: 1;
+    max-height: 10rem;
+    overflow: scroll;
+}
+
 
 /* Middle box */
 
