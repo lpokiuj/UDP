@@ -15,7 +15,33 @@ fetchData().then((cats) => {
     document.querySelector('.list-img').innerHTML = catsTemplate;
     catList = Array.from(list.children);
     filteredCat = catList;
+    getfromSidebar();
 });
+
+function changeList(attr){
+
+    list.innerHTML = ``;
+
+    // console.log(catList);
+
+    filteredCat = []; 
+
+    catList.forEach(cat=>{
+        let scores = JSON.parse(decodeURIComponent(cat.dataset.scores));
+        if(scores.hasOwnProperty(attr)){
+            filteredCat.push(cat);
+        }
+    });
+
+    // console.log(filteredCat);
+
+    for(let i = 0 ; i < filteredCat.length ; i++){
+        list.appendChild(filteredCat[i]);
+    }
+
+    let changeText = document.querySelector('.categories-bar p');
+    changeText.innerHTML = `${attr}`;
+}
 
 Array.from(document.querySelector('.drop-down-main-content').children).forEach(element=>{
 
@@ -29,27 +55,7 @@ Array.from(document.querySelector('.drop-down-main-content').children).forEach(e
                 console.log("nyaho");
             }
 
-            list.innerHTML = ``;
-
-            // console.log(catList);
-
-            filteredCat = []; 
-
-            catList.forEach(cat=>{
-                let scores = JSON.parse(decodeURIComponent(cat.dataset.scores));
-                if(scores.hasOwnProperty(attr)){
-                    filteredCat.push(cat);
-                }
-            });
-
-            // console.log(filteredCat);
-
-            for(let i = 0 ; i < filteredCat.length ; i++){
-                list.appendChild(filteredCat[i]);
-            }
-
-            let changeText = document.querySelector('.categories-bar p');
-            changeText.innerHTML = `${attr}`;
+            changeList(attr);
         
         });
 
@@ -82,3 +88,23 @@ alphabetical.addEventListener("click", () => {
     changeText.innerHTML = `Alphabetical`;
 
 });
+
+function getfromSidebar(){
+    const getCategories = new URL(window.location.href).searchParams.get("categories");
+    if(getCategories != null){
+        Array.from(document.querySelector('.drop-down-main-content').children).forEach(element=>{
+
+            // console.log(element.tagName);
+            if(element.innerHTML == getCategories){
+                let attr = element.dataset.attribute;
+                    if(attr === undefined){
+                        console.log("nyaho");
+                    }
+        
+                changeList(attr);
+        
+                
+            }
+        });
+    }    
+}

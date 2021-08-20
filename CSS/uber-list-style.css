@@ -107,6 +107,11 @@ nav .burger-icon span{
     padding-right: 3.5rem;
 }
 
+.drop-down-content a{
+    text-decoration: none;
+    color: rgb(172, 163, 163);
+}
+
 .drop-down-content p{
     padding: 0.4rem 0;
 }

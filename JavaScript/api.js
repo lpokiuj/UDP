@@ -1,4 +1,3 @@
-
 const fetchData = () => {
     return fetch("../db/db.mock.json")
       .then((response) => response.json())
