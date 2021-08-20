@@ -68,7 +68,7 @@ nav .burger-icon span{
 .sidebar{
     z-index: 3;
     color: rgb(172, 163, 163);
-    position: absolute;
+    position: fixed;
     height: 100%;
     width: 80%;
     right: -100%;
