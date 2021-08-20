@@ -1,5 +1,5 @@
 const createTemplate = (catName, catScore) => `
-    <div data-scores="${encodeURIComponent(JSON.stringify(catScore))}" class="char-img">
+    <div data-scores="${encodeURIComponent(JSON.stringify(catScore))}" class="char-img flex">
         <a href="uber-desc.html?name=${catName}"><img src="../images/character-img.svg" alt=""></a>
         <p>${catName}</p>
     </div>
