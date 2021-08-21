@@ -102,6 +102,11 @@ nav .burger-icon span{
     margin-top: 6rem;
 }
 
+.link-other a{
+    text-decoration: none;
+    color: rgb(172, 163, 163);
+}
+
 /* Dropdown Sidebar */
 
 .drop-down-content{
@@ -176,6 +181,10 @@ main li{
         display: flex;
     }
 
+    .responsive a{
+        display: block;
+    }
+
     /* dropdown nav */
 
     .nav-categories{
@@ -188,6 +197,11 @@ main li{
         opacity: 0;
         overflow: hidden;
         position: absolute;
+    }
+
+    .nav-categories a{
+        text-decoration: none;
+        color: black;
     }
 
     .drop-down-button-nav{
