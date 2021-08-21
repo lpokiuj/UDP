@@ -84,7 +84,7 @@ alphabetical.addEventListener("click", () => {
         list.appendChild(filteredMap[i]);
     }
     
-    let changeText = document.querySelector('.sort-by-bar');
+    let changeText = document.querySelector('.sort-by-bar p');
     changeText.innerHTML = `Alphabetical`;
 
 });
@@ -102,7 +102,7 @@ uberID.addEventListener("click", () => {
         list.appendChild(filteredMap[i]);
     }
     
-    let changeText = document.querySelector('.sort-by-bar');
+    let changeText = document.querySelector('.sort-by-bar p');
     changeText.innerHTML = `Uber's ID`;
 
 });
@@ -126,3 +126,25 @@ function getfromSidebar(){
         });
     }    
 }
+
+
+
+
+
+let reset = document.querySelector('.reset-btn');
+reset.addEventListener("click", function(e){
+
+    e.stopPropagation();
+
+    list.innerHTML = '';
+
+    for(let i = 0 ; i < catList.length ; i++){
+        list.appendChild(catList[i]);
+    }
+
+    let changeTextCategories = document.querySelector('.categories-bar p');
+    let changeTextSort = document.querySelector('.sort-by-bar p');
+    changeTextCategories.innerHTML = `Categories`;
+    changeTextSort.innerHTML = `Sort by`;
+
+});

@@ -172,6 +172,8 @@ main > h1{
     background-color: var(--clr-secondary);
     margin-top: 1rem;
     border-radius: 10rem;
+    justify-content: space-between;
+    width: 100%;
 }
 
 .drop-down-button > p {
@@ -202,6 +204,16 @@ main > h1{
     max-height: 10rem;
     overflow: scroll;
 }
+
+.drop-down-main::-webkit-scrollbar {
+    display: none;
+}
+  
+/* Hide scrollbar for IE, Edge and Firefox */
+.drop-down-main{
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+} 
 
 .drop-down-main-content p:hover{
     cursor: pointer;
@@ -248,6 +260,20 @@ main > h1{
 .char-img p{
     color: white;
 }
+
+
+.reset-btn{
+    outline: none;
+    border: none;
+}
+
+.reset-btn:hover{
+    cursor: pointer;
+    background-color: rgba(186, 149, 18, 1);
+}
+
+
+
 
 /* space-between for 2 data and more */
 @media screen and (min-width: 408px){
