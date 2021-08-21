@@ -1,5 +1,5 @@
 const createTemplate = (catName, catScore, uberId) => `
-    <div data-scores="${encodeURIComponent(JSON.stringify(catScore))}" data-uberId="${uberId}" class="char-img flex">
+    <div data-scores="${encodeURIComponent(JSON.stringify(catScore))}" data-uber-id="${uberId}" class="char-img flex">
         <a href="uber-desc.html?name=${catName}"><img src="../images/character-img.svg" alt=""></a>
         <p>${catName}</p>
     </div>
@@ -89,28 +89,23 @@ alphabetical.addEventListener("click", () => {
 
 });
 
-// uberID.addEventListener("click", () => {
+uberID.addEventListener("click", () => {
 
-//     list.innerHTML = '';
+    list.innerHTML = '';
 
     
-//     const filteredMap = [...filteredCat].sort((el1, el2) => {
-//         const a = el1.querySelector("p").innerText;
-//         const b = el2.querySelector("p").innerText;
-      
-//         if (a < b) return -1;
-//         if (a > b) return 1;
-//         return 0;
-//     });
+    const filteredMap = [...filteredCat].sort((el1, el2) => {
+        return parseInt(el1.dataset.uberId, 10) - parseInt(el2.dataset.uberId, 10);
+    });
 
-//     for(let i = 0 ; i < filteredMap.length ; i++){
-//         list.appendChild(filteredMap[i]);
-//     }
+    for(let i = 0 ; i < filteredMap.length ; i++){
+        list.appendChild(filteredMap[i]);
+    }
     
-//     let changeText = document.querySelector('.sort-by-bar');
-//     changeText.innerHTML = `Alphabetical`;
+    let changeText = document.querySelector('.sort-by-bar');
+    changeText.innerHTML = `Uber's ID`;
 
-// });
+});
 
 function getfromSidebar(){
     const getCategories = new URL(window.location.href).searchParams.get("categories");
