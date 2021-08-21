@@ -351,6 +351,10 @@ main > h1{
         width: 25rem;
     }
 
+    .drop-down-main{
+        width: 25rem;
+    }
+
     .char-img:hover{
         cursor: pointer;
         background-color: rgba(102, 102, 102, 1);
