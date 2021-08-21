@@ -1,5 +1,3 @@
-// console.log(new URL(window.location.href).searchParams.get("name"));
-
 function createdescTemplate(desc){
 
     let descrip = "";
@@ -8,7 +6,6 @@ function createdescTemplate(desc){
     }
 
     return `
-
     <img src="../images/charCardPlaceHolder.svg" alt="">
     <h1>Description</h1>
         ${descrip}
@@ -26,8 +23,6 @@ function createdescTemplate(desc){
 } 
 
 fetchData().then((cats) => {
-    // console.log(cats);
-
     const getName = new URL(window.location.href).searchParams.get("name");
 
     let returnValue;
