@@ -181,36 +181,36 @@
     <!-- stop sidebar -->
 
     <main>
-        <form class="search-bar" method="POST">
+        <div class="search-bar">
             <input type="text" name="cat-search" class="search-bar-bar" placeholder="Search . . .">
-        </form>
+        </div>
         <div class="drop flex">
             <div class="drop-down-wrapper">
                 <div class="categories-bar drop-down-button">
                     <p>Categories</p>
                 </div>
                 <div class="drop-down-main">
-                    <div class="drop-down-main-content">
-                        <p data-attribute="Anti-Red">Anti-Red</p>
-                        <p data-attribute="Anti-Floating">Anti-Floating</p>
-                        <p data-attribute="Anti-Black"> Anti-Black</p>
-                        <p data-attribute="Anti-Metal">Anti-Metal</p>
-                        <p data-attribute="Anti-Angel">Anti-Angel</p>
-                        <p data-attribute="Anti-Alien">Anti-Alien</p>
-                        <p data-attribute="Anti-Zombie">Anti-Zombie</p>
-                        <p data-attribute="Anti-Relic">Anti-Relic</p>
-                        <p data-attribute="Anti-White">Anti-White</p>
+                    <div class="drop-down-main-content drop-down-categories">
+                        <p data-category="Anti-Red">Anti-Red</p>
+                        <p data-category="Anti-Floating">Anti-Floating</p>
+                        <p data-category="Anti-Black"> Anti-Black</p>
+                        <p data-category="Anti-Metal">Anti-Metal</p>
+                        <p data-category="Anti-Angel">Anti-Angel</p>
+                        <p data-category="Anti-Alien">Anti-Alien</p>
+                        <p data-category="Anti-Zombie">Anti-Zombie</p>
+                        <p data-category="Anti-Relic">Anti-Relic</p>
+                        <p data-category="Anti-White">Anti-White</p>
                         <hr>
-                        <p data-attribute="Rusher">Rusher</p>
-                        <p data-attribute="Tanker">Tanker</p>
-                        <p data-attribute="CC/Support">CC/Support</p>
-                        <p data-attribute="Sniper">Sniper</p>
-                        <p data-attribute="Anti-Wave">Anti-Wave</p>
+                        <p data-category="Rusher">Rusher</p>
+                        <p data-category="Tanker">Tanker</p>
+                        <p data-category="CC/Support">CC/Support</p>
+                        <p data-category="Sniper">Sniper</p>
+                        <p data-category="Anti-Wave">Anti-Wave</p>
                         <hr>
-                        <p data-attribute="Melee">Melee</p>
-                        <p data-attribute="Midranger">Midranger</p>
-                        <p data-attribute="Backliner">Backliner</p>
-                        <p data-attribute="Super Backliner">Super Backliner</p>
+                        <p data-category="Melee">Melee</p>
+                        <p data-category="Midranger">Midranger</p>
+                        <p data-category="Backliner">Backliner</p>
+                        <p data-category="Super Backliner">Super Backliner</p>
                     </div>
                 </div>
             </div>
@@ -251,10 +251,14 @@
             <p>Sort by</p>
         </div>
         <div class="drop-down-main">
-            <div class="drop-down-main-content">
+            <div class="drop-down-main-content drop-down-sort">
                 <p class="alphabet">Alphabetical</p>
                 <p class="uberID">Uber's ID</p>
             </div>
+        </div>
+
+        <div class="search-confirm">
+            <button class="search-btn drop-down-button">SEARCH</button>
         </div>
 
         <div class="reset-all">
