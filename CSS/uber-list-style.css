@@ -160,6 +160,10 @@ main > h1{
 
 /* Dropdown main */
 
+.drop{
+    flex-direction: column;
+}
+
 .drop-down-button{
     padding: 0.5rem 1rem;
     background-color: var(--clr-secondary);
@@ -203,7 +207,8 @@ main > h1{
 }
 
 .drop-down-main-content hr{
-    background-color: var(--clr-primary);
+    border: 1px solid var(--clr-primary);
+
 }
 
 /* List img */
