@@ -31,7 +31,7 @@ searchBarForm.addEventListener('submit', (e) => {
     }
     
     let catResults = [];
-    catList.forEach((catElement) => {
+    filteredCat.forEach((catElement) => {
         const catName = catElement.querySelector('p').innerText;
 
         if(catName.toLowerCase().includes(searchedCat.toLowerCase())) {
@@ -177,9 +177,13 @@ reset.addEventListener("click", function(e){
         list.appendChild(catList[i]);
     }
 
+    filteredCat = [];
+
     let changeTextCategories = document.querySelector('.categories-bar p');
     let changeTextSort = document.querySelector('.sort-by-bar p');
+    let changeTextSearch = document.querySelector('.search-bar-bar');
     changeTextCategories.innerHTML = `Categories`;
     changeTextSort.innerHTML = `Sort by`;
+    changeTextSearch.value = ``;
 
 });
