@@ -6,6 +6,7 @@ const createTemplate = (catName, catScore, uberId) => `
 `
 
 const list = document.querySelector('.list-img');
+let allCats = [];
 let catList = [];
 let filteredCat = [];
 
@@ -13,10 +14,44 @@ fetchData().then((cats) => {
     // console.log(cats);
     const catsTemplate = cats.map((cat) => createTemplate(cat.Name, cat.Scores, cat.uberId)).join('');
     document.querySelector('.list-img').innerHTML = catsTemplate;
+    allCats = cats;
     catList = Array.from(list.children);
     filteredCat = catList;
     getfromSidebar();
 });
+
+const searchBarForm = document.querySelector('.search-bar');
+
+searchBarForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const searchedCat = searchBarForm.elements['cat-search'].value;
+
+    if(searchedCat === undefined) {
+        return;
+    }
+    
+    let catResults = [];
+    catList.forEach((catElement) => {
+        const catName = catElement.querySelector('p').innerText;
+
+        if(catName.toLowerCase().includes(searchedCat.toLowerCase())) {
+            catResults.push(catElement);
+        }
+    })
+
+    list.innerHTML = '';
+
+    if(!catResults.length) {
+        list.innerHTML = `
+        <h2 style="color: white;">No cats found</h2>
+        `
+        return;
+    }
+
+    for(let i = 0 ; i < catResults.length ; i++){
+        list.appendChild(catResults[i]);
+    }
+})
 
 function changeList(attr){
 
