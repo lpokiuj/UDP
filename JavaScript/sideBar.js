@@ -71,3 +71,13 @@ document.querySelector('.sidebar').addEventListener("click", function(e){
     flag = 0;
 
 });
+
+// responsive navbar
+
+let navCategories = document.querySelector('.nav-button-categories');
+
+navCategories.addEventListener("click", function(){
+
+    navCategories.classList.add('active');
+
+})

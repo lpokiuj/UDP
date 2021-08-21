@@ -89,6 +89,29 @@ alphabetical.addEventListener("click", () => {
 
 });
 
+// uberID.addEventListener("click", () => {
+
+//     list.innerHTML = '';
+
+    
+//     const filteredMap = [...filteredCat].sort((el1, el2) => {
+//         const a = el1.querySelector("p").innerText;
+//         const b = el2.querySelector("p").innerText;
+      
+//         if (a < b) return -1;
+//         if (a > b) return 1;
+//         return 0;
+//     });
+
+//     for(let i = 0 ; i < filteredMap.length ; i++){
+//         list.appendChild(filteredMap[i]);
+//     }
+    
+//     let changeText = document.querySelector('.sort-by-bar');
+//     changeText.innerHTML = `Alphabetical`;
+
+// });
+
 function getfromSidebar(){
     const getCategories = new URL(window.location.href).searchParams.get("categories");
     if(getCategories != null){

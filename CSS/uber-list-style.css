@@ -243,3 +243,20 @@ main > h1{
         justify-content: space-between;
     }
 }
+
+@media screen and (min-width: 1024px){
+
+    .drop{
+        justify-content: space-between;
+    }
+
+    .drop-down-button{
+        width: 25rem;
+    }
+
+    .char-img:hover{
+        cursor: pointer;
+        background-color: rgba(102, 102, 102, 1);
+    }
+
+}

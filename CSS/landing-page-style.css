@@ -204,6 +204,31 @@ main{
         display: flex;
     }
 
+    /* dropdown nav */
+
+    .nav-categories{
+        flex-direction: column;
+    }
+
+    .drop-down-nav{
+        display: none;
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+    }
+    
+    .drop-down-button-nav.active + .drop-down-nav{
+        display: block;
+        opacity: 1;
+        max-height: 12rem;
+        overflow: scroll;
+        z-index: 10;
+        background-color: var(--clr-secondary);
+    }
+
+    /* main */
+
     main{
         background-size: cover;
     }
