@@ -1,5 +1,5 @@
-const createTemplate = (catName, catScore) => `
-    <div data-scores="${encodeURIComponent(JSON.stringify(catScore))}" class="char-img flex">
+const createTemplate = (catName, catScore, uberId) => `
+    <div data-scores="${encodeURIComponent(JSON.stringify(catScore))}" data-uberId="${uberId}" class="char-img flex">
         <a href="uber-desc.html?name=${catName}"><img src="../images/character-img.svg" alt=""></a>
         <p>${catName}</p>
     </div>
@@ -11,7 +11,7 @@ let filteredCat = [];
 
 fetchData().then((cats) => {
     // console.log(cats);
-    const catsTemplate = cats.map((cat) => createTemplate(cat.Name, cat.Scores)).join('');
+    const catsTemplate = cats.map((cat) => createTemplate(cat.Name, cat.Scores, cat.uberId)).join('');
     document.querySelector('.list-img').innerHTML = catsTemplate;
     catList = Array.from(list.children);
     filteredCat = catList;
