@@ -6,7 +6,6 @@ const createTemplate = (catName, catScore, uberId) => `
 `
 
 const list = document.querySelector('.list-img');
-let allCats = [];
 let catList = [];
 let filteredCat = [];
 
@@ -14,7 +13,6 @@ fetchData().then((cats) => {
     // console.log(cats);
     const catsTemplate = cats.map((cat) => createTemplate(cat.Name, cat.Scores, cat.uberId)).join('');
     document.querySelector('.list-img').innerHTML = catsTemplate;
-    allCats = cats;
     catList = Array.from(list.children);
     filteredCat = catList;
     getfromSidebar();
@@ -177,7 +175,7 @@ reset.addEventListener("click", function(e){
         list.appendChild(catList[i]);
     }
 
-    filteredCat = [];
+    filteredCat = catList;
 
     let changeTextCategories = document.querySelector('.categories-bar p');
     let changeTextSort = document.querySelector('.sort-by-bar p');
