@@ -1,187 +1,138 @@
+// Helpers
+const storeScores = (scores) => encodeURIComponent(JSON.stringify(scores));
+const getScores = (scores) => JSON.parse(decodeURIComponent(scores));
+
 const createTemplate = (catName, catScore, uberId) => `
-    <div data-scores="${encodeURIComponent(JSON.stringify(catScore))}" data-uber-id="${uberId}" class="char-img flex">
+    <div data-scores="${storeScores(
+        catScore
+    )}" data-uber-id="${uberId}" class="char-img flex">
         <a href="uber-desc.html?name=${catName}"><img src="../images/character-img.svg" alt=""></a>
         <p>${catName}</p>
     </div>
-`
+`;
 
-const list = document.querySelector('.list-img');
-let catList = [];
-let filteredCat = [];
+
+// Get all elements
+const catList = document.querySelector(".list-img");
+
+// search
+const searchForm = document.querySelector(".search-bar");
+const searchInput = document.querySelector(".search-bar-bar");
+
+// categories
+let categoriesFlag = false;
+const categoriesButton = document.querySelector(".categories-bar");
+const categoriesButtonText = categoriesButton.querySelector("p");
+const filterCategoryButtons = document.querySelectorAll(
+    ".drop-down-categories p"
+);
+
+// sort
+let sortFlag = false;
+const sortByButton = document.querySelector(".sort-by-bar");
+const sortByButtonText = sortByButton.querySelector("p");
+const filterSortButtons = document.querySelectorAll(".drop-down-sort p");
 
 fetchData().then((cats) => {
-    // console.log(cats);
-    const catsTemplate = cats.map((cat) => createTemplate(cat.Name, cat.Scores, cat.uberId)).join('');
-    document.querySelector('.list-img').innerHTML = catsTemplate;
-    catList = Array.from(list.children);
-    filteredCat = catList;
-    getfromSidebar();
-});
+    const catTemplate = cats
+        .map((cat) => createTemplate(cat.Name, cat.Scores, cat.uberId))
+        .join("");
 
-const searchBarForm = document.querySelector('.search-bar');
+    // appending to list
+    catList.innerHTML = catTemplate;
 
-searchBarForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const searchedCat = searchBarForm.elements['cat-search'].value;
+    const cache = {
+        searchInput: searchInput.value || "",
+        category: "",
+        sort: "",
+    };
 
-    if(searchedCat === undefined) {
-        return;
-    }
-    
-    let catResults = [];
-    filteredCat.forEach((catElement) => {
-        const catName = catElement.querySelector('p').innerText;
+    // FIXME: how to clear input text when user refresh? 
+    searchInput.addEventListener("input", (e) => {
+        cache.searchInput = e.target.value;
+    });
 
-        if(catName.toLowerCase().includes(searchedCat.toLowerCase())) {
-            catResults.push(catElement);
+    filterCategoryButtons.forEach((el) => {
+        el.addEventListener("click", (e) => {
+            cache.category = e.target.dataset.category;
+            categoriesButtonText.innerText = cache.category;
+        });
+    });
+
+    filterSortButtons.forEach((el) => {
+        el.addEventListener("click", (e) => {
+            cache.sort = e.target.classList[0];
+            sortByButtonText.innerText = e.target.innerText;
+        });
+    });
+
+    const sortBy = (elements, type) => {
+        if (type === "alphabet") {
+            return elements.sort((el1, el2) => {
+                if (el1.Name < el2.Name) return -1;
+                if (el1.Name > el2.Name) return 1;
+                return 0;
+            });
+        } else {
+            return elements.sort((el1, el2) => {
+                return el1.uberId - el2.uberId;
+            });
         }
+    };
+
+    const searchBtn = document.querySelector(".search-btn");
+    searchBtn.addEventListener("click", () => {
+        // getCache
+        console.table(cache);
+
+        // elements
+        let elements = cats;
+        let output = [];
+        output =
+            cache.searchInput === ""
+                ? cats
+                : elements.filter((cat) =>
+                      cat.Name.toLowerCase().includes(
+                          cache.searchInput.toLowerCase()
+                      )
+                  );
+
+        output =
+            cache.category === ""
+                ? output
+                : output.filter((cat) =>
+                      cat.Scores.hasOwnProperty(cache.category)
+                  );
+
+        output = cache.sort === "" ? output : sortBy(output, cache.sort);
+
+        console.log("output: ", output);
+
+        catList.innerHTML = "";
+
+        if (!output.length) {
+            catList.innerHTML = `
+            <h2 style="color: white;">No cats found</h2>
+            `;
+        } else {
+            catList.innerHTML = output
+                .map((o) => createTemplate(o.Name, o.Scores, o.uberId))
+                .join("");
+        }
+    });
+
+    document.querySelector('.reset-btn').addEventListener('click', () => {
+        catList.innerHTML = '';
+
+        // reset cache
+        cache.category = "";
+        cache.searchInput = "";
+        cache.sort = ""
+
+        // reset UI
+        searchInput.value = "";
+        categoriesButtonText.innerText = "Categories";
+        sortByButtonText.innerText = "Sort by";
+        catList.innerHTML = catTemplate;
     })
-
-    list.innerHTML = '';
-
-    if(!catResults.length) {
-        list.innerHTML = `
-        <h2 style="color: white;">No cats found</h2>
-        `
-        return;
-    }
-
-    for(let i = 0 ; i < catResults.length ; i++){
-        list.appendChild(catResults[i]);
-    }
-})
-
-function changeList(attr){
-
-    list.innerHTML = ``;
-
-    // console.log(catList);
-
-    filteredCat = []; 
-
-    catList.forEach(cat=>{
-        let scores = JSON.parse(decodeURIComponent(cat.dataset.scores));
-        if(scores.hasOwnProperty(attr)){
-            filteredCat.push(cat);
-        }
-    });
-
-    // console.log(filteredCat);
-
-    for(let i = 0 ; i < filteredCat.length ; i++){
-        list.appendChild(filteredCat[i]);
-    }
-
-    let changeText = document.querySelector('.categories-bar p');
-    changeText.innerHTML = `${attr}`;
-}
-
-Array.from(document.querySelector('.drop-down-main-content').children).forEach(element=>{
-
-    // console.log(element.tagName);
-
-    if(element.tagName == "P"){
-        element.addEventListener("click", (e)=>{
-            // console.log(e.dataset.attribute);
-            let attr = e.target.dataset.attribute;
-            if(attr === undefined){
-                console.log("nyaho");
-            }
-
-            changeList(attr);
-        
-        });
-
-        
-    }
-});
-
-let alphabetical = document.querySelector('.alphabet');
-let uberID = document.querySelector('.uberID');
-
-alphabetical.addEventListener("click", () => {
-
-    list.innerHTML = '';
-
-    
-    const filteredMap = [...filteredCat].sort((el1, el2) => {
-        const a = el1.querySelector("p").innerText;
-        const b = el2.querySelector("p").innerText;
-      
-        if (a < b) return -1;
-        if (a > b) return 1;
-        return 0;
-    });
-
-    for(let i = 0 ; i < filteredMap.length ; i++){
-        list.appendChild(filteredMap[i]);
-    }
-    
-    let changeText = document.querySelector('.sort-by-bar p');
-    changeText.innerHTML = `Alphabetical`;
-
-});
-
-uberID.addEventListener("click", () => {
-
-    list.innerHTML = '';
-
-    
-    const filteredMap = [...filteredCat].sort((el1, el2) => {
-        return parseInt(el1.dataset.uberId, 10) - parseInt(el2.dataset.uberId, 10);
-    });
-
-    for(let i = 0 ; i < filteredMap.length ; i++){
-        list.appendChild(filteredMap[i]);
-    }
-    
-    let changeText = document.querySelector('.sort-by-bar p');
-    changeText.innerHTML = `Uber's ID`;
-
-});
-
-function getfromSidebar(){
-    const getCategories = new URL(window.location.href).searchParams.get("categories");
-    if(getCategories != null){
-        Array.from(document.querySelector('.drop-down-main-content').children).forEach(element=>{
-
-            // console.log(element.tagName);
-            if(element.innerHTML == getCategories){
-                let attr = element.dataset.attribute;
-                    if(attr === undefined){
-                        console.log("nyaho");
-                    }
-        
-                changeList(attr);
-        
-                
-            }
-        });
-    }    
-}
-
-
-
-
-
-let reset = document.querySelector('.reset-btn');
-reset.addEventListener("click", function(e){
-
-    e.stopPropagation();
-
-    list.innerHTML = '';
-
-    for(let i = 0 ; i < catList.length ; i++){
-        list.appendChild(catList[i]);
-    }
-
-    filteredCat = catList;
-
-    let changeTextCategories = document.querySelector('.categories-bar p');
-    let changeTextSort = document.querySelector('.sort-by-bar p');
-    let changeTextSearch = document.querySelector('.search-bar-bar');
-    changeTextCategories.innerHTML = `Categories`;
-    changeTextSort.innerHTML = `Sort by`;
-    changeTextSearch.value = ``;
-
 });
