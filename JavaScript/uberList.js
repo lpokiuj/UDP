@@ -81,7 +81,9 @@ fetchData().then((cats) => {
     };
 
     const searchBtn = document.querySelector(".search-btn");
-    searchBtn.addEventListener("click", () => {
+    searchBtn.addEventListener("click", filterAndRender);
+
+    function filterAndRender(){
         // getCache
         console.table(cache);
 
@@ -92,21 +94,21 @@ fetchData().then((cats) => {
             cache.searchInput === ""
                 ? cats
                 : elements.filter((cat) =>
-                      cat.Name.toLowerCase().includes(
-                          cache.searchInput.toLowerCase()
-                      )
-                  );
+                    cat.Name.toLowerCase().includes(
+                        cache.searchInput.toLowerCase()
+                    )
+                );
 
         output =
             cache.category === ""
                 ? output
                 : output.filter((cat) =>
-                      cat.Scores.hasOwnProperty(cache.category)
-                  );
+                    cat.Scores.hasOwnProperty(cache.category)
+                );
 
         output = cache.sort === "" ? output : sortBy(output, cache.sort);
 
-        console.log("output: ", output);
+        // console.log("output: ", output);
 
         catList.innerHTML = "";
 
@@ -119,7 +121,9 @@ fetchData().then((cats) => {
                 .map((o) => createTemplate(o.Name, o.Scores, o.uberId))
                 .join("");
         }
-    });
+    }
+
+
 
     document.querySelector('.reset-btn').addEventListener('click', () => {
         catList.innerHTML = '';
@@ -135,4 +139,28 @@ fetchData().then((cats) => {
         sortByButtonText.innerText = "Sort by";
         catList.innerHTML = catTemplate;
     })
+
+
+    function getFromSidebar(){
+        const getCategories = new URL(window.location.href).searchParams.get("categories");
+        if(getCategories){
+            Array.from(document.querySelector('.drop-down-main-content').children).forEach(element=>{
+
+                // console.log(element.tagName);
+                if(element.dataset.category == getCategories){
+                    let attr = element.dataset.category;
+                        if(attr === undefined){
+                            console.log("nyaho");
+                        }
+                    cache.category = attr;
+                    categoriesButtonText.innerText = cache.category;
+                    filterAndRender();
+                }
+            });
+        }
+    }
+
+    getFromSidebar();
+
+
 });
