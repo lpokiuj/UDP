@@ -11,6 +11,7 @@ const createTemplate = (catName, catScore, uberId) => `
     </div>
 `;
 
+
 // Get all elements
 const catList = document.querySelector(".list-img");
 
